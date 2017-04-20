@@ -9,10 +9,10 @@
               <td><label for="short">Shortened URL:</label></td>
               <td>
                   {{#if currentUser}}
-                      <span class="grouped-input">http://localhost:3000/<input type="text" id="short" name="short" placeholder="abcdef" required /></span>
+                      <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
                   {{else}}
                       <input type="hidden" name="short" value="abcdef"/>
-                      http://localhost:3000/abcdef<br/>
+                      {{root}}{{shortBit}}<br/>
                       <span class="small">Registered users can use custom shortened URLs</span>
                   {{/if}}
               </td>
@@ -21,6 +21,12 @@
               <td></td>
               <td><button type="submit">Stump it!</button></td>
           </tr>
+          {{#if isSubmitted}}
+              <tr>
+                  <td></td>
+                  <td><strong>{{root}}{{shortBit}}</strong> has been copied to your clipboard.</td>
+              </tr>
+          {{/if}}
       </table>
   </form>
 </template>

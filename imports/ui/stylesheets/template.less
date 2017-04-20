@@ -62,8 +62,17 @@ input, button {
   padding: 5px;
 }
 
+input {
+  background: transparent;
+}
+
 input:focus {
   border-color: #95a5a6;
+}
+
+input::placeholder {
+  color: #95a5a6;
+  opacity: 1;
 }
 
 button:hover, button:focus {
@@ -75,7 +84,24 @@ button:active {
 }
 
 input.full-width {
-  width: 100%;
+  width: ~"calc(100% - 10px)";
+}
+
+.grouped-input {
+  display: flex;
+  align-items: center;
+
+  color: #95a5a6;
+  border: solid 1px #bdc3c7;
+
+  padding-left: 5px;
+}
+
+.grouped-input input {
+  border: none;
+  flex-grow: 1;
+
+  padding-left: 0.1em;
 }
 
 // utility classes
