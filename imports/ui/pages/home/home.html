@@ -1,4 +1,18 @@
 <template name="App_home">
-  {{> hello}}
-  {{> info}}
+  <form>
+      <table class="shortener">
+          <tr>
+              <td><label for="link">Original URL:</label></td>
+              <td><input type="text" id="link" placeholder="http://example.com/" class="full-width" required /></td>
+          </tr>
+          <tr>
+              <td><label for="custom">Shortened URL:</label></td>
+              <td><span class="group-input">http://localhost:3000/<input type="text" id="custom" placeholder="abcdefg" disabled required/></span> <abbr title="Only registered users can provide a custom URL">?</abbr></td>
+          </tr>
+          <tr>
+              <td></td>
+              <td><button type="submit">Stump it!</button></td>
+          </tr>
+      </table>
+  </form>
 </template>

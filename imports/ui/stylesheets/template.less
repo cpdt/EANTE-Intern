@@ -1,0 +1,80 @@
+// theme
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: #e74c3c;
+}
+
+header {
+  display: flex;
+  align-items: center;
+
+  background-color: #e74c3c;
+  color: #ffffff;
+
+  padding: 15px 20px;
+}
+
+header h1 {
+  margin: 0 0 0 10px;
+}
+
+header img {
+  height: 50px;
+}
+
+header a {
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.shortener {
+  border: solid 5px #ecf0f1;
+
+  margin: 10px;
+  padding: 30px 30px 15px 30px;
+}
+
+.shortener td:first-child {
+  font-weight: bold;
+  padding-right: 2em;
+}
+
+.shortener td {
+  padding-bottom: 15px;
+}
+
+// form elements
+input, button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  border: solid 1px #bdc3c7;
+  padding: 5px;
+}
+
+input:focus {
+  border-color: #95a5a6;
+}
+
+button:hover, button:focus {
+  border-color: #95a5a6;
+}
+
+button:active {
+  background-color: #bdc3c7;
+}
+
+input.full-width {
+  width: 100%;
+}
+
+// utility classes
+.push {
+  flex-grow: 1;
+}
