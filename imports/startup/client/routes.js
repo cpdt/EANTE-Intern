@@ -1,9 +1,12 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { Meteor } from 'meteor/meteor';
+import { Shorts } from '/imports/api/shorts/shorts.js';
 
 // Import needed templates
 import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
+import '../../ui/pages/short/short.js';
 import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
@@ -14,8 +17,9 @@ FlowRouter.route('/', {
   },
 });
 
-FlowRouter.notFound = {
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_notFound' });
-  },
-};
+FlowRouter.route('/:path', {
+  name: 'App.short',
+  action(params) {
+    BlazeLayout.render('App_short', { path: params.path });
+  }
+});

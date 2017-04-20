@@ -7,6 +7,19 @@ Meteor.methods({
         check(long, String);
         check(short, String);
 
-        // todo
+        Shorts.insert({
+            long,
+            short,
+            clicks: 0,
+            creator: Meteor.userId() || 0
+        });
+    },
+
+    'shorts.track'(id) {
+        check(id, String);
+
+        Shorts.update(id, {
+            $inc: { clicks: 1 }
+        });
     }
 });

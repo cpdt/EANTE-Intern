@@ -14,7 +14,7 @@ function generateUrl() {
 }
 
 Template.App_home.onCreated(function() {
-    Meteor.subscribe('shorts.mine');
+    Meteor.subscribe('shorts.all');
 
     this.state = new ReactiveDict();
 
@@ -27,6 +27,9 @@ Template.App_home.helpers({
     root: Meteor.absoluteUrl(),
     shortBit() {
         return Template.instance().state.get('shortBit');
+    },
+    oldShortBit() {
+        return Template.instance().state.get('oldShortBit');
     },
     isSubmitted() {
         return Template.instance().state.get('isSubmitted');
@@ -51,6 +54,7 @@ Template.App_home.events({
             else {
                 long.value = '';
                 instance.state.set('shortBit', generateUrl());
+                instance.state.set('oldShortBit', shortUrl);
                 instance.state.set('isSubmitted', true);
             }
         });
