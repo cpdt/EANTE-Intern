@@ -1,13 +1,21 @@
 <template name="App_home">
-  <form>
+  <form class="shortener-form">
       <table class="shortener">
           <tr>
-              <td><label for="link">Original URL:</label></td>
-              <td><input type="text" id="link" placeholder="http://example.com/" class="full-width" required /></td>
+              <td><label for="long">Original URL:</label></td>
+              <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
           </tr>
           <tr>
-              <td><label for="custom">Shortened URL:</label></td>
-              <td><span class="group-input">http://localhost:3000/<input type="text" id="custom" placeholder="abcdefg" disabled required/></span> <abbr title="Only registered users can provide a custom URL">?</abbr></td>
+              <td><label for="short">Shortened URL:</label></td>
+              <td>
+                  {{#if currentUser}}
+                      <span class="grouped-input">http://localhost:3000/<input type="text" id="short" name="short" placeholder="abcdef" required /></span>
+                  {{else}}
+                      <input type="hidden" name="short" value="abcdef"/>
+                      http://localhost:3000/abcdef<br/>
+                      <span class="small">Registered users can use custom shortened URLs</span>
+                  {{/if}}
+              </td>
           </tr>
           <tr>
               <td></td>
