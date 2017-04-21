@@ -10,8 +10,6 @@ Template.App_home.onCreated(function() {
 
     this.state = new ReactiveDict();
 
-    // generate 6-character short URL
-    //this.state.set('shortBit', generateUrl());
     this.state.set('error', "");
     this.state.set('isSubmitted', false);
 });
@@ -41,8 +39,7 @@ Template.App_home.events({
         event.preventDefault();
 
         const target = event.target;
-        //const long = target.long.value;
-        //const short = target.short.value || Template.instance().state.get('shortBit');
+
         const long = target.long;
         const short = target.short;
 
@@ -51,8 +48,10 @@ Template.App_home.events({
 
         Meteor.call('shorts.insert', long.value, shortUrl, error => {
             if (error) {
+                // show error message
                 instance.state.set('error', error.message);
             } else {
+                // reset state and show submitted page
                 long.value = '';
                 instance.state.set('error', "");
                 instance.state.set('oldShortBit', shortUrl);
@@ -61,14 +60,18 @@ Template.App_home.events({
         });
     },
     'click #again-btn'(event) {
+        // go back to initial display state
         Template.instance().state.set('isSubmitted', false);
     },
     'click #clipboard-copy'(event) {
+        // select source input and try to copy
         const copyElement = document.querySelector('#clipboard-source');
         copyElement.select();
 
         try {
-            if (!document.execCommand('copy')) alert("Couldn't copy to clipboard");
+            if (!document.execCommand('copy')) {
+                alert("Couldn't copy to clipboard");
+            }
         } catch (err) {
             alert("Couldn't copy to clipboard");
         }

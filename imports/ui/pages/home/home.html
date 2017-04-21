@@ -2,31 +2,67 @@
     <div class="home">
         <div class="home-box">
             {{#if isSubmitted}}
-                <p>Congrats! Your shortened link is <span class="grouped"><input type="text" id="clipboard-source" readonly value="{{root}}{{oldShortBit}}"/><button id="clipboard-copy"><i class="fa fa-clipboard"></i></button></span>.</p>
+                <p>
+                    Congrats! Your shortened link is
+                    <span class="grouped">
+                        <input type="text"
+                               id="clipboard-source"
+                               readonly
+                               value="{{root}}{{oldShortBit}}"
+                        /><button id="clipboard-copy">
+                            <i class="fa fa-clipboard"></i>
+                        </button>
+                    </span>.
+                </p>
                 <p><button id="again-btn">Make Another</button></p>
             {{else}}
                 <form class="shortener-form">
                     <table class="shortener">
                         <tr>
-                            <td><strong><label for="long">Original URL:</label></strong></td>
-                            <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
+                            <td>
+                                <strong>
+                                    <label for="long">Original URL:</label>
+                                </strong>
+                            </td>
+                            <td>
+                                <input type="text"
+                                       id="long"
+                                       name="long"
+                                       placeholder="http://example.com/"
+                                       class="full-width"
+                                       required />
+                            </td>
                         </tr>
                         <tr>
-                            <td><strong><label for="short">Shortened URL:</label></strong></td>
+                            <td>
+                                <strong>
+                                    <label for="short">Shortened URL:</label>
+                                </strong>
+                            </td>
                             <td>
                                 {{#if currentUser}}
-                                    <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" pattern="[a-zA-Z0-9_\-]+" required /></span>
+                                    <span class="grouped-input">
+                                        <span>{{root}}</span
+                                        ><input type="text"
+                                                id="short"
+                                                name="short"
+                                                value="{{shortBit}}"
+                                                pattern="[a-zA-Z0-9_\-]+"
+                                                required />
+                                    </span>
                                 {{else}}
                                     {{root}}{{shortBit}}<br/>
-                                    <span class="small">Registered users can use custom shortened URLs</span>
+                                    <span class="small">
+                                        Registered users can use custom shortened URLs
+                                    </span>
                                 {{/if}}
                             </td>
                         </tr>
                         {{#if error}}
-                        <tr>
-                            <td></td>
-                            <td class="error">{{error}}</td>
-                        </tr>
+                            <tr>
+                                <td></td>
+                                <td class="error">{{error}}</td>
+                            </tr>
                         {{/if}}
                         <tr>
                             <td></td>
@@ -49,10 +85,20 @@
                     </tr>
                     {{#each myLinks}}
                         <tr>
-                            <td><a href="{{long}}" target="_blank">{{long}}</a></td>
-                            <td><a href="{{root}}{{short}}" target="_blank">{{root}}{{short}}</a></td>
-                            <td>{{clicks}}</td>
-                            <td>{{>timeago createdAt}}</td>
+                            <td>
+                                <a href="{{long}}" target="_blank">{{long}}</a>
+                            </td>
+                            <td>
+                                <a href="{{root}}{{short}}" target="_blank">
+                                    {{root}}{{short}}
+                                </a>
+                            </td>
+                            <td>
+                                {{clicks}}
+                            </td>
+                            <td>
+                                {{>timeago createdAt}}
+                            </td>
                         </tr>
                     {{/each}}
                 </table>

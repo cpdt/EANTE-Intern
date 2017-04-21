@@ -7,32 +7,18 @@ import './short.html'
 
 Template.App_short.onCreated(function() {
     Meteor.subscribe('shorts.all');
-
-    /*setTimeout(() => {
-        FlowRouter.go('/');
-    }, 2000);*/
-});
-
-Template.App_short.helpers({
-    init(path) {
-        /*const found = Shorts.findOne({
-            short: path
-        });
-        if (found === null) return;
-
-        console.log('Calling');
-        Meteor.call('shorts.track', found._id);*/
-
-        /*setTimeout(() => {
-            window.location = found.long;
-        }, 1000);*/
-    }
 });
 
 Template.short_redirect.onRendered(function() {
     let tries = 0;
 
-    // a horrible solution to a silly problem, but it works
+    // a horrible solution to a silly problem, but it works:
+    // try 10 times (every 100ms) to get the link from the database.
+    // if nothing found after 1 second, go back to home page.
+    // else track the click and go to the page
+
+    // this should be done server-side (then 403 redirect), but meteor seems
+    // to make this difficult or impossible
     let interval = setInterval(() => {
         const found = Shorts.findOne({
             short: this.data.path
