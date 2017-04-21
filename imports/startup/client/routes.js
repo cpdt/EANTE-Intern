@@ -7,7 +7,6 @@ import { Shorts } from '/imports/api/shorts/shorts.js';
 import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/short/short.js';
-import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
