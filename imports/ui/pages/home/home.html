@@ -1,32 +1,33 @@
 <template name="App_home">
-  <form class="shortener-form">
-      <table class="shortener">
-          <tr>
-              <td><label for="long">Original URL:</label></td>
-              <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
-          </tr>
-          <tr>
-              <td><label for="short">Shortened URL:</label></td>
-              <td>
-                  {{#if currentUser}}
-                      <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
-                  {{else}}
-                      <input type="hidden" name="short" value="abcdef"/>
-                      {{root}}{{shortBit}}<br/>
-                      <span class="small">Registered users can use custom shortened URLs</span>
-                  {{/if}}
-              </td>
-          </tr>
-          <tr>
-              <td></td>
-              <td><button type="submit">Stump it!</button></td>
-          </tr>
-          {{#if isSubmitted}}
-              <tr>
-                  <td></td>
-                  <td class="force-wrap">Congrats! Your shortened link is <strong>{{root}}{{oldShortBit}}</strong>.</td>
-              </tr>
-          {{/if}}
-      </table>
-  </form>
+  <div class="home-box">
+      {{#if isSubmitted}}
+          <p>Congrats! Your shortened link is <strong>{{root}}{{oldShortBit}}</strong>.</p>
+          <p><button id="again-btn">Make Another</button></p>
+      {{else}}
+          <form class="shortener-form">
+              <table class="shortener">
+                  <tr>
+                      <td><strong><label for="long">Original URL:</label></strong></td>
+                      <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
+                  </tr>
+                  <tr>
+                      <td><strong><label for="short">Shortened URL:</label></strong></td>
+                      <td>
+                          {{#if currentUser}}
+                              <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
+                          {{else}}
+                              <input type="hidden" name="short" value="abcdef"/>
+                              {{root}}{{shortBit}}<br/>
+                              <span class="small">Registered users can use custom shortened URLs</span>
+                          {{/if}}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td><button type="submit">Stump it!</button></td>
+                  </tr>
+            </table>
+          </form>
+      {{/if}}
+  </div>
 </template>

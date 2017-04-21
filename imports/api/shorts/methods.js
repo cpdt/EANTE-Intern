@@ -11,7 +11,8 @@ Meteor.methods({
             long,
             short,
             clicks: 0,
-            creator: Meteor.userId() || 0
+            creator: Meteor.userId() || 0,
+            createdAt: new Date()
         });
     },
 
