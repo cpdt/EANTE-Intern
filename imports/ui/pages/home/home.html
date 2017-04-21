@@ -1,33 +1,60 @@
 <template name="App_home">
-  <div class="home-box">
-      {{#if isSubmitted}}
-          <p>Congrats! Your shortened link is <strong>{{root}}{{oldShortBit}}</strong>.</p>
-          <p><button id="again-btn">Make Another</button></p>
-      {{else}}
-          <form class="shortener-form">
-              <table class="shortener">
-                  <tr>
-                      <td><strong><label for="long">Original URL:</label></strong></td>
-                      <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
-                  </tr>
-                  <tr>
-                      <td><strong><label for="short">Shortened URL:</label></strong></td>
-                      <td>
-                          {{#if currentUser}}
-                              <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
-                          {{else}}
-                              <input type="hidden" name="short" value="abcdef"/>
-                              {{root}}{{shortBit}}<br/>
-                              <span class="small">Registered users can use custom shortened URLs</span>
-                          {{/if}}
-                      </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td><button type="submit">Stump it!</button></td>
-                  </tr>
-            </table>
-          </form>
-      {{/if}}
-  </div>
+    <div class="home">
+        <div class="home-box">
+            {{#if isSubmitted}}
+                <p>Congrats! Your shortened link is <strong><a href="{{root}}{{oldShortBit}}" target="_blank">{{root}}{{oldShortBit}}</a></strong>.</p>
+                <p><button id="again-btn">Make Another</button></p>
+            {{else}}
+                <form class="shortener-form">
+                    <table class="shortener">
+                        <tr>
+                            <td><strong><label for="long">Original URL:</label></strong></td>
+                            <td><input type="text" id="long" name="long" placeholder="http://example.com/" class="full-width" required /></td>
+                        </tr>
+                        <tr>
+                            <td><strong><label for="short">Shortened URL:</label></strong></td>
+                            <td>
+                                {{#if currentUser}}
+                                    <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
+                                {{else}}
+                                    <input type="hidden" name="short" value="abcdef"/>
+                                    {{root}}{{shortBit}}<br/>
+                                    <span class="small">Registered users can use custom shortened URLs</span>
+                                {{/if}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Stump it!</button></td>
+                        </tr>
+                    </table>
+                </form>
+            {{/if}}
+        </div>
+        {{#if currentUser}}
+        <div class="home-box">
+            <h2>My Links</h2>
+            {{#if myLinks.count}}
+                <table class="link-list">
+                    <tr>
+                        <th>Original URL</th>
+                        <th>Short URL</th>
+                        <th>Clicks</th>
+                        <th>Creation</th>
+                    </tr>
+                    {{#each myLinks}}
+                        <tr>
+                            <td><a href="{{long}}" target="_blank">{{long}}</a></td>
+                            <td><a href="{{root}}{{short}}" target="_blank">{{root}}{{short}}</a></td>
+                            <td>{{clicks}}</td>
+                            <td>{{>timeago createdAt}}</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            {{else}}
+                <p class="small">Nothing here yet.</p>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
 </template>

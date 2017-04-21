@@ -36,8 +36,18 @@ header a {
   margin-left: 10px;
 }
 
+.home {
+  display: flex;
+  align-items: flex-start;
+}
+
 .home-box {
   display: inline-block;
+  vertical-align: top;
+
+  flex-basis: 50%;
+  flex-grow: 1;
+  flex-shrink: 0;
 
   border: solid 5px #ecf0f1;
 
@@ -45,16 +55,26 @@ header a {
   padding: 30px 30px 15px 30px;
 }
 
-.home-box p:first-child {
+.home-box :first-child {
   margin-top: 0;
 }
 
-.shortener td:first-child {
+.shortener td:not(:last-child) {
   padding-right: 2em;
 }
 
-.shortener td {
+.shortener td, .link-list td {
   padding-bottom: 15px;
+}
+
+.link-list {
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.link-list td, .link-list th {
+  border: solid 1px #ecf0f1;
+  padding: 7px;
 }
 
 // form elements

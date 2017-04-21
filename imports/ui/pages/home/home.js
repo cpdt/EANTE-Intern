@@ -46,6 +46,9 @@ Template.App_home.helpers({
     },
     isSubmitted() {
         return Template.instance().state.get('isSubmitted');
+    },
+    myLinks() {
+        return Shorts.find({ creator: Meteor.userId() });
     }
 });
 
