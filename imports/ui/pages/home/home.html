@@ -15,14 +15,19 @@
                             <td><strong><label for="short">Shortened URL:</label></strong></td>
                             <td>
                                 {{#if currentUser}}
-                                    <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" required /></span>
+                                    <span class="grouped-input"><span>{{root}}</span><input type="text" id="short" name="short" value="{{shortBit}}" pattern="[a-zA-Z0-9_\-]+" required /></span>
                                 {{else}}
-                                    <input type="hidden" name="short" value="abcdef"/>
                                     {{root}}{{shortBit}}<br/>
                                     <span class="small">Registered users can use custom shortened URLs</span>
                                 {{/if}}
                             </td>
                         </tr>
+                        {{#if error}}
+                        <tr>
+                            <td></td>
+                            <td class="error">{{error}}</td>
+                        </tr>
+                        {{/if}}
                         <tr>
                             <td></td>
                             <td><button type="submit">Stump it!</button></td>
