@@ -62,5 +62,15 @@ Template.App_home.events({
     },
     'click #again-btn'(event) {
         Template.instance().state.set('isSubmitted', false);
+    },
+    'click #clipboard-copy'(event) {
+        const copyElement = document.querySelector('#clipboard-source');
+        copyElement.select();
+
+        try {
+            if (!document.execCommand('copy')) alert("Couldn't copy to clipboard");
+        } catch (err) {
+            alert("Couldn't copy to clipboard");
+        }
     }
 });

@@ -2,7 +2,7 @@
     <div class="home">
         <div class="home-box">
             {{#if isSubmitted}}
-                <p>Congrats! Your shortened link is <strong><a href="{{root}}{{oldShortBit}}" target="_blank">{{root}}{{oldShortBit}}</a></strong>.</p>
+                <p>Congrats! Your shortened link is <span class="grouped"><input type="text" id="clipboard-source" readonly value="{{root}}{{oldShortBit}}"/><button id="clipboard-copy"><i class="fa fa-clipboard"></i></button></span>.</p>
                 <p><button id="again-btn">Make Another</button></p>
             {{else}}
                 <form class="shortener-form">
